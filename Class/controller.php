@@ -22,7 +22,14 @@ try{
     return $sql->execute();
   }
   public function getNote(){
-    $sql = $this->conn->prepare("SELECT * FROM notes");
+    $sql = $this->conn->prepare("SELECT * FROM notes ORDER BY created_at DESC");
+    $sql->execute();
+    return $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+  
+  public function getById($id){
+    $sql = $this->conn->prepare("SELECT * FROM notes WHERE id = :id");
+    $sql->bindValue(":id", $id);
     $sql->execute();
     return $sql->fetchAll(PDO::FETCH_ASSOC);
   }

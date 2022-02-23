@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/Class/noteFunc.php";
 
 $con = require_once __DIR__ . "/Class/controller.php";
 $error = [];
@@ -14,16 +15,12 @@ if($_SERVER['REQUEST_METHOD'] === "POST"){
   }
   if(empty($error)){
     $con->addNote($title, $description);
-    header("Location: /");
+    header("Location: views.php");
   }
 }
-
-function validInput($input){
-  $input = trim($input);
-  $input = htmlspecialchars($input);
-  $input = strtolower($input);
-  
-  return $input;
+$current = ["title" => '', "description" => ""];
+if(isset($_GET['id'])){
+  $current = $con->getById($_GET['id']);
 }
 ?>
 <!DOCTYPE html>
@@ -40,12 +37,13 @@ function validInput($input){
     <form action="" method="post">
     <div class="form-group">
       <label for="">Title</label>
-      <input type="text" name="title" id="" class="form-control <?php echo isset($error['title']) ? ' is-invalid' : '' ?>">
+      <input type="text" name="title" id="" class="form-control <?php echo isset($error['title']) ? ' is-invalid' : '' ?>" value="<?php echo $current['title'] ?>">
       <small class="invalid-feedback">
         <?php echo $error['title'] ?? ''; ?>
       </small>
       <label for="">Note</label>
       <textarea name="description" class="form-control <?php echo isset($error['description']) ? 'is-invalid' : '' ?>">
+          <?php echo $current['description']?>
       </textarea>
       <small class="invalid-feedback">
         <?php 
