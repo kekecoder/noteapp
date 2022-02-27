@@ -5,7 +5,7 @@ class library{
   public PDO $conn;
   public function __construct(){
 try{
-  $this->conn = new PDO("mysql:host=127.0.0.1; port=3306; dbname=noteapp;", 'root', 'jerusalem');
+  $this->conn = new PDO("mysql:host=localhost; port=3306; dbname=noteapp;", 'root', 'jerusalem1991');
     $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  // print "connected successfully";
 }catch(Error $e){
@@ -32,6 +32,18 @@ try{
     $sql->bindValue(":id", $id);
     $sql->execute();
     return $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+  public function updateNote($id, $title, $description){
+    $sql = $this->conn->prepare("UPDATE notes SET title = :title, description = :description WHERE id = :id");
+    $sql->bindValue(":id", $id);
+    $sql->bindValue(":title", $title);
+    $sql->bindValue(":description", $description);
+    return $sql->execute();
+  }
+  public function deleteNote($id){
+    $sql = $this->conn->prepare("DELETE FROM notes WHERE id = :id");
+    $sql->bindValue(":id", $id);
+    return $sql->execute();
   }
 }
 
