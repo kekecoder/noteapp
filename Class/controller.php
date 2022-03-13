@@ -1,9 +1,26 @@
 <?php
-class library{
-  public $conn;
-  public function __construct(PDO $conn){
-    $this->conn = $conn;
+//require_once "dbconfig.php";
 
+class library{
+  public PDO $conn;
+  public function __construct(){
+    try 
+    {
+            $url = getenv('JAWSDB_MARIA_URL');
+            $dbparts = parse_url($url);
+      
+            $hostname = $dbparts['host'];
+            $username = $dbparts['user'];
+            $password = $dbparts['pass'];
+            $database = ltrim($dbparts['path'],'/');
+            $this->conn = new PDO("mysql:host=$hostname; port=3306; dbname=$database; ", $username, $password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      } 
+      catch (PDOException $e) 
+      {
+          //print "An Exception has occured " . $e->getMessage();
+          print "Something went wrong, please try again later.";
+      }
   }
   
   public function addNote($title, $description){
@@ -39,4 +56,4 @@ class library{
   }
 }
 
-return new library(require_once "dbconfig.php");
+return new library;

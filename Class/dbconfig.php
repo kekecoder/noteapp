@@ -8,8 +8,8 @@ try
         $username = $dbparts['user'];
         $password = $dbparts['pass'];
         $database = ltrim($dbparts['path'],'/');
-        $pdo = new PDO("mysql:host=$hostname; port=3306; dbname=$database; ", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $conn = new PDO("mysql:host=$hostname; port=3306; dbname=$database; ", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
       //print "connected successfully";
       /*$sql = "CREATE TABLE notes(
