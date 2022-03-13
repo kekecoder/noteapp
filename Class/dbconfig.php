@@ -12,15 +12,15 @@ try
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
       //print "connected successfully";
-      $sql = "CREATE TABLE notes(
+      /*$sql = "CREATE TABLE notes(
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         description VARCHAR(255) NOT NULL,
         created_at DATETIME
         ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci";
         //$sql = "DROP TABLE users";
-    $pdo->exec($sql);
-    print "table created successfully";
+    $pdo->exec($sql);*/
+    //print "table created successfully";
   } 
   catch (PDOException $e) 
   {
