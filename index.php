@@ -1,5 +1,5 @@
 <?php
-ini_set('display_error', 1);
+ini_set('display_errors', 1);
 require_once __DIR__ . "/Class/noteFunc.php";
 
 $con = require_once __DIR__ . "/Class/controller.php";
