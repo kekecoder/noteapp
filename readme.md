@@ -9,3 +9,5 @@ This app basic functionalty is store notes created through the web, it can also 
 - Implemented object oriented programming (OOP)
 - Use date to show when the note was created
 - Implemented Create Read Update Delete (CRUD)
+
+You can view the live site from <a href="https://note-appss.herokuapp.com">HERE</a>
