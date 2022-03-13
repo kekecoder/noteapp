@@ -1,10 +1,7 @@
 <?php
-require_once "dbconfig.php";
-
 class library{
   public PDO $conn;
-  public function __construct(){
-    require_once "dbconfig.php";
+  public function __construct($conn){
     $this->conn = $conn;
 
   }
@@ -42,4 +39,4 @@ class library{
   }
 }
 
-return new library;
+return new library(require_once "dbconfig.php");
