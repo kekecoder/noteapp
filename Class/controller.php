@@ -1,17 +1,12 @@
 <?php
-//require_once "dbconfig.php";
+require_once "dbconfig.php";
 
 class library{
   public PDO $conn;
   public function __construct(){
-try{
-  $this->conn = new PDO("mysql:host=localhost; port=3306; dbname=noteapp;", 'root', 'jerusalem1991');
-    $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- // print "connected successfully";
-}catch(Error $e){
-  //print 'Something went wrong ' . $e->getMessage();
-  print 'Something went wrong, please try again later, thanks';
-}
+    require_once "dbconfig.php";
+    $this->conn = $conn;
+
   }
   
   public function addNote($title, $description){
