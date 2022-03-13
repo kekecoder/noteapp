@@ -1,7 +1,7 @@
 <?php
 class library{
-  public PDO $conn;
-  public function __construct($conn){
+  public $conn;
+  public function __construct(PDO $conn){
     $this->conn = $conn;
 
   }
